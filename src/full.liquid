@@ -1,0 +1,78 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@700&display=swap" rel="stylesheet">
+<style>
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 0%;
+    width: 75%;
+  }
+  .bg {
+    margin-left: 0%;
+    height: 100%;
+    width: auto;
+  }
+  .events {
+    position: absolute;
+    top: 58%;
+    left: 67%;
+    transform: rotate(-10deg);
+  }
+  .events .title.title--small {
+    font-family: "Arsenal", sans-serif !important;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 30px;
+  }
+</style>
+{% assign measureHour = 'now' | date: "%H" | plus: 0 %}
+{% assign ToD = 1 %}
+{% if measureHour < 1 %}
+  {% assign ToD = 1 %}
+{% elsif measureHour < 7 %}
+  {% assign ToD = 2 %}
+{% elsif measureHour < 11 %}
+  {% assign ToD = 3 %}
+{% elsif measureHour < 14 %}
+  {% assign ToD = 4 %}
+{% elsif measureHour < 19 %}
+  {% assign ToD = 5 %}
+{% elsif measureHour < 21 %}
+  {% assign ToD = 6 %}
+{% endif %}
+<img class="image image-dither bg" src="https://i.imgur.com/FWhzxui.png">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Day/1/{{'now'|date:"%-e"}}Bottom.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Month/1/{{'now'|date:"%-m"}}00Bottom.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Week/1/{{'now'|date:"%A"}}Bottom.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/ToD/1/{{ToD}}.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Day/1/{{'now'|date:"%-e"}}.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Month/1/{{'now'|date:"%-m"}}00.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Week/1/{{'now'|date:"%A"}}.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Month/1/{{'now'|date:"%-m"}}00Top.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Day/1/{{'now'|date:"%-e"}}Top.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Week/1/{{'now'|date:"%A"}}Top.png?raw=true">
+
+<div class='events text--gray-1'>
+  {% assign today = 'now' | date: '%B %d' %}
+  {% assign hasEvents = false %}
+  
+  {% for event in data.events %}
+    {% assign eventDate = event.start_full | date: '%B %d' %}
+    {% if eventDate == today %}
+      {% assign hasEvents = true %}
+      {% assign cleanTime = event.start | replace: " AM", "" | replace: " PM", "" %}
+      <div class='title title--small'>
+        {{cleanTime}} {{event.summary | truncate: 18}}
+      </div>
+    {% endif %}
+  {% endfor %}
+  
+  {% if hasEvents == false %}
+    <div class='title title--small'>
+      No events today!
+    </div>
+  {% endif %}
+</div>

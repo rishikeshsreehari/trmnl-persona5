@@ -1,0 +1,50 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@700&display=swap" rel="stylesheet">
+<style>
+  .layout {
+    overflow: hidden;
+  }
+  img {
+    position: absolute;
+    top: 12%;
+    left: 0;
+    margin-left: 0%;
+    width: 100%;
+  }
+  .bg {
+    height: 100%;
+    top: 0;
+    margin-left: -25%;
+    width: auto;
+    clip-path: inset(0 41% 0 0);
+  }
+</style>
+{% assign measureHour = 'now' | date: "%H" | plus: 0 %}
+{% assign ToD = 1 %}
+{% if measureHour < 1 %}
+  {% assign ToD = 1 %}
+{% elsif measureHour < 7 %}
+  {% assign ToD = 2 %}
+{% elsif measureHour < 11 %}
+  {% assign ToD = 3 %}
+{% elsif measureHour < 14 %}
+  {% assign ToD = 4 %}
+{% elsif measureHour < 19 %}
+  {% assign ToD = 5 %}
+{% elsif measureHour < 21 %}
+  {% assign ToD = 6 %}
+{% endif %}
+<div class='layout'>
+<img class='image image-dither bg' src="https://i.imgur.com/aLAzQqG.jpeg">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Day/1/{{'now'|date:"%-e"}}Bottom.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Month/1/{{'now'|date:"%-m"}}00Bottom.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Week/1/{{'now'|date:"%A"}}Bottom.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/ToD/1/{{ToD}}.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Day/1/{{'now'|date:"%-e"}}.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Month/1/{{'now'|date:"%-m"}}00.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Week/1/{{'now'|date:"%A"}}.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Month/1/{{'now'|date:"%-m"}}00Top.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Day/1/{{'now'|date:"%-e"}}Top.png?raw=true">
+<img class='image image-dither' src="https://github.com/Mive82/Persona-5-Calendar/blob/v1.1/Assets/Week/1/{{'now'|date:"%A"}}Top.png?raw=true">
+</div>

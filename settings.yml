@@ -1,0 +1,30 @@
+---
+# For production/real calendar data, use 'polling'
+# For local testing without API, change strategy to 'static'
+strategy: polling
+
+no_screen_padding: 'yes'
+dark_mode: 'no'
+
+# Uncomment this for  testing locally with static data
+# static_data: '{"data":{"events":[{"end":"11:00","start":"10:00","status":"confirmed","summary":"Morning Meeting","end_full":"2026-01-06T11:00:00.000+00:00","start_full":"2026-01-06T10:00:00.000+00:00","description":"Test event"},{"end":"15:00","start":"14:00","status":"confirmed","summary":"Afternoon Call","end_full":"2026-01-06T15:00:00.000+00:00","start_full":"2026-01-06T14:00:00.000+00:00","description":"Another test"}]}}'
+
+# Polling configuration for real calendar data
+polling_verb: get
+polling_url: https://usetrmnl.com/api/plugin_settings/{{plugin_id}}/data
+polling_headers: authorization=bearer {{user_token}}
+
+id: 36140
+name: Persona Calendar
+refresh_interval: 1440
+custom_fields:
+  - keyname: user_token
+    field_type: text
+    name: User Token
+    description: Find it in the Account settings 
+    placeholder: user_jaksdjkajklsdjkls1241
+  - keyname: plugin_id
+    field_type: text
+    name: Calendar Plugin ID
+    description: Find it in the URL of your calendar plugin.
+    placeholder: 36140
